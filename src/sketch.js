@@ -1,10 +1,10 @@
-const sketch = (p) => {
-  p.setup = () => {
-    p.createCanvas(window.innerWidth, window.innerHeight);
+const sketch = (p5) => {
+  p5.setup = () => {
+    p5.createCanvas(window.innerWidth, window.innerHeight);
   };
 
-  p.draw = () => {
-    p.background(255);
+  p5.draw = () => {
+    p5.background(255);
   };
 };
 
