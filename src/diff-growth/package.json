@@ -1,0 +1,10 @@
+{
+  "name": "diff-growth",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "rbush": "^3.0.1",
+    "vec2": "^1.6.1"
+  }
+}

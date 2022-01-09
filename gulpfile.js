@@ -12,6 +12,10 @@ const { hideBin } = require('yargs/helpers');
 const yargs = require('yargs/yargs');
 
 const argv = yargs(hideBin(process.argv)).argv;
+if (!argv.sketch) {
+  console.error('Please specify a sketch path (i.e. `yarn gulp --sketch src/project-name/sketch.js`)');
+  process.exit(1);
+}
 
 gulp.task('clean', async (cb) => {
   await del('output/');
@@ -19,7 +23,7 @@ gulp.task('clean', async (cb) => {
 });
 
 gulp.task('build', () => {
-  return browserify(argv.sketch || 'src/sketch.js', { debug: true })
+  return browserify(argv.sketch, { debug: true })
     .transform('babelify', { presets: ['@babel/preset-env']})
     .bundle()
     .pipe(source('app.js'))
@@ -31,7 +35,7 @@ gulp.task('build', () => {
 });
 
 gulp.task('watch', () => {
-  return gulp.watch('src/**/*', gulp.parallel('build'));
+  return gulp.watch('src/**/*.js', gulp.parallel('build'));
 });
 
 gulp.task('serve', () => {
